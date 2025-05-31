@@ -67,11 +67,11 @@
 ```json
 {
   "commandPermissions": {
-    "setupautovc": ["Booster"],
+    "setupautovc": ["Administrator"],
     "renamevc": ["Booster"],
     "addvcuser": ["Booster"],
     "removevcuser": ["Booster"],
-    "reactionrole": ["Booster"]
+    "reactionrole": ["Administrator"]
   }
 }
 ```

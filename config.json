@@ -1,8 +1,9 @@
 {
   "commandPermissions": {
-    "setupautovc": ["Booster"],
+    "setupautovc": ["Administrator"],
     "renamevc": ["Booster"],
     "addvcuser": ["Booster"],
-    "removevcuser": ["Booster"]
+    "removevcuser": ["Booster"],
+    "reactionrole": ["Administrator"]
   }
 }
