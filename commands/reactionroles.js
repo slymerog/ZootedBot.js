@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const reactionDB = require('../db/reactionRoleManager');
 const { MessageFlags } = require('discord-api-types/v10');
+const config = require('../config.json'); // make sure this is at the top if not already
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -41,19 +42,16 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const config = require('../config.json'); // make sure this is at the top if not already
+const { hasCommandPermission } = require('../utils/permissions');
 
-const allowedRoles = config.commandPermissions.reactionrole || [];
-const hasPermission = interaction.member.roles.cache.some(role =>
-  allowedRoles.includes(role.name)
-);
-
-if (!hasPermission) {
+if (!hasCommandPermission(interaction, 'reactionrole')) {
   return interaction.reply({
     content: '❌ You do not have permission to use this command.',
     flags: MessageFlags.Ephemeral
   });
 }
+
+
 
     const sub = interaction.options.getSubcommand();
 

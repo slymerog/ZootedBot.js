@@ -8,17 +8,15 @@ module.exports = {
     .setDescription('Setup an auto voice channel system.')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
-    const allowedRoles = config.commandPermissions.setupautovc;
-const hasPermission = interaction.member.roles.cache.some(role =>
-  allowedRoles.includes(role.name)
-);
+const { hasCommandPermission } = require('../utils/permissions');
 
-if (!hasPermission) {
+if (!hasCommandPermission(interaction, 'setupautovc')) {
   return interaction.reply({
     content: '❌ You do not have permission to use this command.',
-      flags: MessageFlags.Ephemeral
+    flags: MessageFlags.Ephemeral
   });
 }
+
 
     const guild = interaction.guild;
 

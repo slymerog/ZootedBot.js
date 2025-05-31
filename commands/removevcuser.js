@@ -13,18 +13,15 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const allowedRoles = config.commandPermissions.removevcuser;
-const hasPermission = interaction.member.roles.cache.some(role =>
-  allowedRoles.includes(role.name)
-);
+const { hasCommandPermission } = require('../utils/permissions');
 
-if (!hasPermission) {
-return interaction.reply({
-  content: '❌ You do not have permission to use this command.',
-  flags: MessageFlags.Ephemeral
-});
-
+if (!hasCommandPermission(interaction, 'removevcuser')) {
+  return interaction.reply({
+    content: '❌ You do not have permission to use this command.',
+    flags: MessageFlags.Ephemeral
+  });
 }
+
 
     const member = interaction.member;
     const channel = member.voice.channel;

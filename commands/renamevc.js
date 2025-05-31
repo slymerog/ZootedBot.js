@@ -13,17 +13,15 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const allowedRoles = config.commandPermissions.renamevc;
-const hasPermission = interaction.member.roles.cache.some(role =>
-  allowedRoles.includes(role.name)
-);
+const { hasCommandPermission } = require('../utils/permissions');
 
-if (!hasPermission) {
+if (!hasCommandPermission(interaction, 'renamevc')) {
   return interaction.reply({
     content: '❌ You do not have permission to use this command.',
-    ephemeral: true
+    flags: MessageFlags.Ephemeral
   });
 }
+
 
     const member = interaction.member;
     const channel = member.voice.channel;
