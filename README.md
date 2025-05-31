@@ -1,6 +1,6 @@
 # booleanBot
 
-**booleanBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels with robust access controls and role-based command permissions.
+**booleanBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels, reaction roles, and role-based command permissions.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-### 🧑‍🤝‍👨 Invite-Based Access System
+### 🧑‍🤝‍🧑 Invite-Based Access System
 
 * `/addvcuser @user`: Grants someone access to your private VC.
 * `/removevcuser @user`: Revokes access.
@@ -35,6 +35,18 @@
 
 ---
 
+### 🎭 Reaction Role System (Persistent)
+
+* `/reactionrole add` — Assign a role to a reaction on a message.
+  * Emoji can be Unicode or custom.
+  * Can mark roles as **non-removable**.
+* `/reactionrole remove` — Remove reaction role bindings.
+* Users get roles when they react.
+* Reaction roles persist across restarts via SQLite.
+* Full rehydration logic ensures reactions work after downtime.
+
+---
+
 ### 💾 Persistent Storage (SQLite)
 
 * Uses `better-sqlite3` for high-speed, persistent data.
@@ -43,6 +55,8 @@
   * Temporary VC tracking
   * User-preferred VC names
   * Invited users per VC owner
+  * Reaction role bindings
+  * Reaction role history per user/message/emoji
 
 ---
 
@@ -56,7 +70,8 @@
     "setupautovc": ["Booster"],
     "renamevc": ["Booster"],
     "addvcuser": ["Booster"],
-    "removevcuser": ["Booster"]
+    "removevcuser": ["Booster"],
+    "reactionrole": ["Booster"]
   }
 }
 ```
@@ -84,12 +99,16 @@ project-root/
 │   ├── renamevc.js
 │   ├── addvcuser.js
 │   ├── removevcuser.js
-│   └── unlockvc.js
+│   ├── unlockvc.js
+│   ├── reactionroles.js
 ├── events/
 │   ├── ready.js
-│   └── voiceStateUpdate.js
+│   ├── voiceStateUpdate.js
+│   ├── messageReactAdd.js
+│   └── messageReactRemove.js
 ├── db/
-│   └── voiceManager.js
+│   ├── voiceManager.js
+│   └── reactionRoleManager.js
 ├── config.json
 ├── .env
 └── index.js
@@ -139,6 +158,7 @@ node index.js
 * ✅ Easily extendable to support `/lockvc`, `/vcaccess list`, `/vcowner transfer`, etc.
 * 💡 Consider adding logs or notifications when access is granted/removed.
 * 🌐 Can be hosted on Physgun.com or any Node.js-compatible service.
+* 📊 Add a dashboard or audit log for reaction role activity.
 
 ---
 

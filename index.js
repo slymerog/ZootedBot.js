@@ -7,9 +7,13 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildVoiceStates
-  ]
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers
+  ],
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
+
 
 client.commands = new Collection();
 
