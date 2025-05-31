@@ -106,9 +106,14 @@ project-root/
 │   ├── voiceStateUpdate.js
 │   ├── messageReactAdd.js
 │   └── messageReactRemove.js
+│   ├── interactionCreate.js
 ├── db/
 │   ├── voiceManager.js
 │   └── reactionRoleManager.js
+├── src/
+│   ├── deploy-commands.js
+├── utils/
+│   ├── permissions.js
 ├── config.json
 ├── .env
 └── index.js
