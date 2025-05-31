@@ -1,4 +1,7 @@
 {
+  "welcomeChannelId": "11047604165658885",
+  "welcomeMessage": "👋 Welcome to **{{server}}**, {{user}}! <#110476043583807> requires attention before access to our server!.",
+
   "commandPermissions": {
     "setupautovc": ["Administrator"],
     "renamevc": ["Booster"],
