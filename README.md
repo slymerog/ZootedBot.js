@@ -1,6 +1,6 @@
-# booleanBot
+# ZootedBot
 
-**booleanBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels, reaction roles, and role-based command permissions.
+**ZootedBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels, reaction roles, role-based command permissions, and customizable welcome messages.
 
 ---
 
@@ -44,6 +44,24 @@
 * Users get roles when they react.
 * Reaction roles persist across restarts via SQLite.
 * Full rehydration logic ensures reactions work after downtime.
+
+---
+
+### 💬 Custom Welcome Message System
+
+* Sends a welcome message to a specific channel when a new user joins.
+* Fully customizable with placeholders:
+  - `{{user}}` — Mentions the new user
+  - `{{server}}` — Displays the server name
+  - Channel mentions supported using `<#channelID>`
+* Configurable in `config.json`:
+```json
+{
+  "welcomeChannelId": "your-channel-id",
+  "welcomeMessage": "👋 Welcome to **{{server}}**, {{user}}! Check out <#123456789012345678> before accessing the rest of the server."
+}
+```
+* Add or change easily without touching bot code.
 
 ---
 
@@ -107,6 +125,7 @@ project-root/
 │   ├── messageReactAdd.js
 │   └── messageReactRemove.js
 │   ├── interactionCreate.js
+│   └── guildMemberAdd.js
 ├── db/
 │   ├── voiceManager.js
 │   └── reactionRoleManager.js
@@ -126,8 +145,8 @@ project-root/
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourname/booleanBot.git
-cd booleanBot
+git clone https://github.com/yourname/zootedbot.git
+cd zootedbot
 ```
 
 ### 2. Install Dependencies
@@ -179,4 +198,4 @@ Pull requests welcome! If you'd like to add features, improve structure, or opti
 
 ---
 
-**Made with ❤️ by booleanBot Dev Team.**
+**Made with ❤️ by ZootedBot Dev Team.**
