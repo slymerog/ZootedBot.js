@@ -18,7 +18,7 @@
 
 ---
 
-### 🧑‍\u🤝‍\u👨 Invite-Based Access System
+### 🧑‍🤝‍👨 Invite-Based Access System
 
 * `/addvcuser @user`: Grants someone access to your private VC.
 * `/removevcuser @user`: Revokes access.
