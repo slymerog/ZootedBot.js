@@ -1,0 +1,8 @@
+{
+  "commandPermissions": {
+    "setupautovc": ["Booster"],
+    "renamevc": ["Booster"],
+    "addvcuser": ["Booster"],
+    "removevcuser": ["Booster"]
+  }
+}

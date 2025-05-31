@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { MessageFlags } = require('discord-api-types/v10'); // ✅ Import flags properly
 const voiceDB = require('../db/voiceManager');
+const config = require('../config.json');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,6 +13,18 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
+    const allowedRoles = config.commandPermissions.renamevc;
+const hasPermission = interaction.member.roles.cache.some(role =>
+  allowedRoles.includes(role.name)
+);
+
+if (!hasPermission) {
+  return interaction.reply({
+    content: '❌ You do not have permission to use this command.',
+    ephemeral: true
+  });
+}
+
     const member = interaction.member;
     const channel = member.voice.channel;
 
