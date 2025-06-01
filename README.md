@@ -1,6 +1,6 @@
 # ZootedBot
 
-**ZootedBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels, reaction roles, role-based command permissions, and customizable welcome messages.
+**ZootedBot** is a feature-rich, persistent, and customizable Discord bot focused on automated temporary voice channels, reaction roles, role-based command permissions, customizable welcome messages, and a full-featured embed builder.
 
 ---
 
@@ -65,6 +65,33 @@
 
 ---
 
+### 🧱 Embed Builder System
+
+* `/embedbuilder` — Launches a full interactive embed builder.
+
+  * Builds an embed using buttons + modals.
+  * Live preview shows changes as they're made.
+  * Supports all core embed fields:
+    - Title
+    - Description
+    - URL
+    - Color (hex)
+    - Image
+    - Thumbnail
+    - Footer
+    - Timestamp
+    - Add Fields (inline or block)
+  * Fields can be added or removed with a visual field manager.
+  * Supports reset, live preview, and channel selection.
+  * When done, users can select a channel and send the final embed.
+  * Requires `Administrator` or server owner to use.
+
+* Permissions:
+  - Embed builder commands/buttons/modals are restricted to admins or the server owner.
+  - Session-specific (previews are per-user, not global).
+
+---
+
 ### 💾 Persistent Storage (SQLite)
 
 * Uses `better-sqlite3` for high-speed, persistent data.
@@ -119,6 +146,7 @@ project-root/
 │   ├── removevcuser.js
 │   ├── unlockvc.js
 │   ├── reactionroles.js
+│   ├── embedbuilder.js
 ├── events/
 │   ├── ready.js
 │   ├── voiceStateUpdate.js
@@ -183,6 +211,7 @@ node index.js
 * 💡 Consider adding logs or notifications when access is granted/removed.
 * 🌐 Can be hosted on Physgun.com or any Node.js-compatible service.
 * 📊 Add a dashboard or audit log for reaction role activity.
+* ✍️ Expand Embed Builder to support editing posted embeds and presets.
 
 ---
 
