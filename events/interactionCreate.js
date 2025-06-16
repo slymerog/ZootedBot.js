@@ -22,10 +22,6 @@ module.exports = {
     const isAdmin = interaction.member?.permissions.has(PermissionsBitField.Flags.Administrator);
     const isAllowed = isOwner || isAdmin;
 
-    if (!isAllowed && (interaction.isChatInputCommand() || interaction.isButton() || interaction.isModalSubmit() || interaction.isSelectMenu())) {
-      return interaction.reply({ content: '🚫 You do not have permission to use this embed builder.', flags: 64 });
-    }
-
     if (interaction.isChatInputCommand()) {
       const command = client.commands.get(interaction.commandName);
       if (!command) return;
