@@ -2,7 +2,7 @@ const voiceDB = require('../db/voiceManager');
 const reactionDB = require('../db/reactionRoleManager');
 
 module.exports = {
-  name: 'ready',
+  name: 'clientReady',
   once: true,
   async execute(client) {
     console.log(`✅ Logged in as ${client.user.tag}`);
@@ -56,3 +56,4 @@ module.exports = {
     }
   }
 };
+
