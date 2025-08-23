@@ -13,15 +13,32 @@ module.exports = {
     const trackedChannels = voiceDB.getAllTempChannels();
     for (const { channel_id } of trackedChannels) {
       try {
-        const channel = await client.channels.fetch(channel_id);
-        if (channel && channel.members.size === 0) {
-          await channel.delete();
-          voiceDB.removeTempChannelByChannelId(channel_id);
+        // Try cache first to reduce API calls
+        let channel = client.channels.cache.get(channel_id);
+        if (!channel) {
+          channel = await client.channels.fetch(channel_id).catch(() => null);
+        }
+
+        if (!channel) {
+          // Channel is gone; just clean the DB entry
+          voiceDB.removeTempChannel(channel_id);
+          continue;
+        }
+
+        // Only voice-like channels have a members collection
+        const memberCount = channel?.members?.size ?? 0;
+        if (memberCount === 0) {
+          await channel.delete('Startup cleanup of leftover empty temp VC');
+          voiceDB.removeTempChannel(channel_id); // <-- fixed function name
           console.log(`🧹 Deleted leftover temp channel: ${channel.name}`);
         }
       } catch (err) {
         // If fetch/delete failed, still clear the DB record to prevent leaks
-        voiceDB.removeTempChannelByChannelId(channel_id);
+        try {
+          voiceDB.removeTempChannel(channel_id); // <-- fixed function name
+        } catch (dbErr) {
+          console.error('DB cleanup failed after channel fetch/delete error:', dbErr);
+        }
       }
     }
 
