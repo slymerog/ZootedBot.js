@@ -202,14 +202,16 @@ node src/deploy-commands.js
 ```bash
 node index.js
 ```
-
+```bash
+DEBUG_REACTION_ROLES=1 node index.js
+```
 ---
 
 ## 📘 Notes & Future Ideas
 
 * ✅ Easily extendable to support `/lockvc`, `/vcaccess list`, `/vcowner transfer`, etc.
 * 💡 Consider adding logs or notifications when access is granted/removed.
-* 🌐 Can be hosted on Physgun.com or any Node.js-compatible service.
+* 🌐 Can be hosted on any Node.js-compatible service.
 * 📊 Add a dashboard or audit log for reaction role activity.
 * ✍️ Expand Embed Builder to support editing posted embeds and presets.
 
@@ -227,4 +229,4 @@ Pull requests welcome! If you'd like to add features, improve structure, or opti
 
 ---
 
-**Made with ❤️ by ZootedBot Dev Team.**
+**Made with ❤️ by Zooted.gg Dev Team.**
